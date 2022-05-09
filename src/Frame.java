@@ -27,6 +27,10 @@ public class Frame {
         return cutsToMake;
     }
 
+    public int getRemainingSize(){
+        return remainingSize;
+    }
+
     public void print() {
         System.out.println("-----------------------------------------------------------------------------------------");
         System.out.println("Frame number: " + thisId);

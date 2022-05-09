@@ -61,6 +61,15 @@ public class Main {
         //    window.print();
         //}
         System.out.println("Valid solution: " + validate(windows));
+        System.out.println("Total wastage was: " + wastage(windows) + "mm over " + windows.size() + " frames");
+    }
+
+    private static int wastage(ArrayList<Frame> windows){
+        int totalWastage = 0;
+        for (Frame window: windows){
+            totalWastage += window.getRemainingSize();
+        }
+        return totalWastage;
     }
 
     private static boolean validate(ArrayList<Frame> windows) {
