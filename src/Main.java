@@ -21,6 +21,7 @@ public class Main {
         ArrayList<Integer> cuts = new ArrayList<>();
         ArrayList<Integer> listCutIndex = new ArrayList<>();
         ArrayList<Integer> residual = new ArrayList<>();
+        residual.add(3000);
         int currentCutLength = woodLengthInit;
         int cutIndex = 0;
 
@@ -35,18 +36,19 @@ public class Main {
                     cutIndex = i;                       //set the current index of working wood
                     cutFound = true;                    //we found a cut
                     currentCutLength = residual.get(cutIndex); //set the current length of working wood
-                    listCutIndex.add(cutIndex);         //add the index we will cut from to the list of indices
                 }
             }
             if (!cutFound) {//if we didn't find a compatible piece
+                cutIndex = woodUsed;
                 woodUsed++; //increment the total panels used
+                residual.add(3000);
                 currentCutLength = woodLengthInit; //reset the cut length to a new panel
-                listCutIndex.add(woodUsed); //add the index we will cut from to the list of indices
             }
 
             currentCutLength -= cut;
             cuts.add(cut);
-
+            listCutIndex.add(cutIndex);
+            residual.remove(cutIndex);
             residual.add(cutIndex, currentCutLength);
 
             //System.out.println("current frames used: " + woodUsed);
