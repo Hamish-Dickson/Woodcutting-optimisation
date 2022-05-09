@@ -23,6 +23,10 @@ public class Frame {
         return thisId;
     }
 
+    public ArrayList<Integer> getCutsToMake(){
+        return cutsToMake;
+    }
+
     public void print() {
         System.out.println("-----------------------------------------------------------------------------------------");
         System.out.println("Frame number: " + thisId);

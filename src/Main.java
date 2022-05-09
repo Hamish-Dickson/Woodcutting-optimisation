@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 
 public class Main {
@@ -54,10 +55,20 @@ public class Main {
             //System.out.println("current frames used: " + woodUsed);
         }
         System.out.println(listCutIndex);
+        System.out.println(cuts);
         ArrayList<Frame> windows = collate(listCutIndex, cuts);
-        for(Frame window: windows){
-            window.print();
+        //for(Frame window: windows){
+        //    window.print();
+        //}
+        System.out.println("Valid solution: " + validate(windows));
+    }
+
+    private static boolean validate(ArrayList<Frame> windows) {
+        int totalCuts = 0;
+        for (Frame window: windows){
+            totalCuts += window.getCutsToMake().size();
         }
+        return totalCuts == orders.length;
     }
 
     private static ArrayList<Frame> collate(ArrayList<Integer> listCutIndex, ArrayList<Integer> cuts) {
@@ -65,10 +76,10 @@ public class Main {
         ArrayList<Frame> windows = new ArrayList<>();
         ArrayList<Integer> buffer = new ArrayList<>();
 
-        for (int i = 0; i < numberOfFrames; i++) {
-            for (int k = 0; k < listCutIndex.size(); k++) {
-                if (listCutIndex.get(k) == i) {
-                    buffer.add(cuts.get(k));
+        for (int i = 0; i <= numberOfFrames; i++) {//for each index
+            for (int k = 0; k < listCutIndex.size(); k++) {//for each cut
+                if (listCutIndex.get(k) == i) {//if index at cut position = the index we want
+                    buffer.add(cuts.get(k));    //add the cut to the buffer to be written for this cut
                 }
             }
             windows.add(new Frame(buffer));
